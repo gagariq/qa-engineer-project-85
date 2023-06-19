@@ -1,0 +1,421 @@
+---
+  - summary: |
+      Проверка регистрации пользователя с электронной почтой 
+    requirement: |
+      Пользователь должен быть зарегистрирован при введении валидных данных
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь не создавал учетную запись
+    test-data: |
+       Nickname = gariqgariq
+       Email = gariqgariq@gmail.com
+       Password = 1234567890
+    steps:
+      - Нажать "Sign up"
+      - Ввести данные значения в поля формы регистрации 
+      - Нажать "Submit"
+    expected-result: |
+        Пользователь успешно зарегистрирован
+        
+  - summary: |
+      Проверка авторизации через email 
+    requirement: |
+      Авторизация успешна при введении валидных данных
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Учетная запись создана
+    test-data: |
+       Email = gariqgariq@gmail.com
+       Password = 1234567890
+    steps:
+      - Нажать "Sign in"
+      - Ввести данные значения в поля формы регистрации 
+      - Нажать "Submit"
+    expected-result: |
+        Пользователь успешно авторизован
+
+  - summary: |
+      Проверка авторизации через GitHub
+    requirement: |
+      Пользователь может авторизоваться с помощью учетной записи GitHub
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован в GitHub в текущей сессии браузера
+    test-data: |
+       test
+    steps:
+      - Нажать "Sign in"
+      - Нажать "Sign in with GitHub"
+    expected-result: |
+      Пользователь авторизован в приложении 
+      
+  - summary: |
+      Проверка выбора максимального уровня сложности игры
+    requirement: |
+      Пользователь может выбрать мааксимальный уровень сложности игры
+    prerequisites: 
+      Пользователь авторизован 
+    test-data: |
+      Уровень сложности = 4
+    steps:
+      - Нажать "Create game" 
+      - Нажать "Четыре звезды"
+      - Нажать "With a bot"
+      - Нажать "Create battle" 
+    expected-result: |
+      Игра запустилась на максимальном уровне сложности 
+      
+  - summary: |
+      Проверка выбора минимального уровня сложности игры
+    requirement: |
+      Пользователь может выбрать минимальный уровень сложности игры
+    prerequisites: 
+      Пользователь авторизован 
+    test-data: |
+      Уровень сложности = 1
+    steps:
+      - Нажать "Create game" 
+      - Нажать "Одна звезда"
+      - Нажать "With a bot"
+      - Нажать "Create battle" 
+    expected-result: |
+      Игра запустилась на минимальном уровне сложности 
+      
+  - summary: |
+      Проверка создания игры между двумя пользователями
+    requirement: |
+      Пользователь может создать сражение с другим пользователем
+    prerequisites: 
+      Пользователь авторизован
+    test-data: |
+      Соперник = любой пользователь онлайн
+    steps:
+      - Нажать "Create game"
+      - В поле "Choose opponent" выбрать соперника
+      - Нажать "Сreate invite"
+    expected-result: |
+      Сражение запускается после подтверждения соперника
+      
+  - summary: |
+      Проверка максимального тайминга игры
+    requirement: |
+      Пользователь может настроить игру по времени максимум 60 минут
+    prerequisites: 
+      Пользователь авторизован
+      Выбран минимальный уровень сложности 
+      Выбран формат игры "With a bot"
+    test-data: |
+      Time = 60 min. 
+    steps:
+      - Нажать "Create battle"
+    expected-result: |
+      В поле "Timeout in" есть таймер с обратным отсчетом от 60 минут
+      
+  - summary: |
+      Проверка минимального тайминга игры
+    requirement: |
+      Пользователь может настроить игру по времени минимум 3 минуты
+    prerequisites: 
+      Пользователь авторизован
+      Выбран минимальный уровень сложности 
+      Выбран формат игры "With a bot"
+    test-data: |
+      Time = 3 min. 
+    steps:
+      - Нажать "Create battle"
+    expected-result: |
+      В поле "Timeout in" есть таймер с обратным отсчетом от 3 минут
+      
+  - summary: |
+      Проверка просмотра личной статистики
+    requirement: |
+      Пользователь может просмотреть свою личную статистику  
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован
+    test-data: |
+       тест
+    steps:
+      - Нажать на изображение "Учетная запись"
+      - Нажать "My Profile"
+    expected-result: |
+      Открывается страница с личной статистикой пользователя
+      
+  - summary: |
+      Проверка просмотра законченный игры в видеозаписи
+    requirement: |
+      Пользователь может просмотреть процесс игры в записи
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован
+      Пользователь уже завершил минимум одну игру
+    test-data: |
+       тест
+    steps:
+      - Нажать на изображение "Учетная запись"
+      - Нажать "My Profile"
+      - Нажать "Completed games"
+      - Нажать "Show"
+    expected-result: |
+      Открывается страница игры с возможность просмотра видео 
+      
+  - summary: |
+      Проверка перехода с сайта приложения в мессенджер Telegram
+    requirement: |
+      Пользователь может переместиться с сайта приложения в чат Telegram
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован в приложении
+      Пользователь авторизован в мессенджере Telegram
+    test-data: |
+       тест
+    steps:
+      - Нажать на изображение "Учетная запись"
+      - Нажать "tg#codebattle" 
+    expected-result: |
+      Происходит редирект в приложение Telegram с чатом "Codebattle"
+      
+  - summary: |
+      Проверка записанного видео игры другого пользователя
+    requirement: |
+      Пользователь может просмотреть записанное видео игры другого пользователя
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован
+    test-data: |
+       тест
+    steps:
+      - Нажать "Completed games"
+      - Нажать "show" в строке любой игры
+    expected-result: |
+      Открывается страница игры другого пользователя с просмоотром видео
+      
+  - summary: |
+      Проверка отправки сообщений в чат
+    requirement: |
+      Пользователь может отправить сообшение в чат приложения
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован
+    test-data: |
+      Test word = "Hello, World"
+    steps:
+      - Ввести в поле чата ключевую фразу
+      - Нажать "Send"
+    expected-result: |
+      В форме "Чат" появилось сообщение от пользователя
+      
+  - summary: |
+      Проверка отправки сообщения другому пользователю
+    requirement: |
+      Пользователь может отправить сообщение другому пользователю
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io
+      Пользователь авторизован
+    test-data: |
+       Test word = Hello
+    steps:
+      - Нажать на любого пользователя в списке "Online players"
+      - Нажать "Direct message"
+      - Ввести ключевое слово
+      - Нажать "Send"
+    expected-result: |
+      Сообщение отправлено пользователю в личные сообщения
+      
+  - summary: |
+      Проверка переключения задания на русский язык 
+    requirement: |
+      Пользователь может изменить текст описания задачи в игре на русский
+    prerequisites: 
+      Открыта любая созданная игра с ботом
+      Язык по умолчанию - английский
+    test-data: |
+      Язык = русский
+    steps:
+      - Нажать "EN"
+      - Нажать "RU"
+    expected-result: |
+      Текст описания задачи переведен на русский язык
+      
+  - summary: |
+      Проверка поиска пользователя в рейтинге
+    requirement: |
+      Пользователь может отфильтровать рейтинг по юзернейм
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io/users
+      В приожении авторизован пользователь с username "gagariq"
+      У пользователя "gagariq" есть минимум одна законченная успешно игра
+    test-data: |
+      Username = gagariq
+    steps:
+      - В поле Username ввести 'gagariq'
+      - Нажать "Total"
+    expected-result: |
+      На странице отображается рейтинг пользователя "gagariq" 
+      
+  - summary: |
+      Проверка игры с ботом 
+    requirement: |
+      Пользователь может поиграть с ботом 
+    prerequisites: 
+      Открыт сайт https://codebattle.hexlet.io/users
+      Пользователь авторизован
+    test-data: |
+       Код = const _ = require("lodash");
+             const R = require("rambda");
+             const solution = (width, length) => {
+             return width * length;
+             };
+
+             module.exports = solution;
+    steps:
+      - Нажать "Create game"
+      - Нажать "With a bot"
+      - Выбрать "rect_area"
+      - Нажать "Create battle"
+      - Ввести код в поле игры
+      - Нажать "Chek solution"
+    expected-result: |
+      Появилось информационная табличка, что пользователь выиграл
+      
+  - summary: |
+      Проверка кнопки Light на странице сражения
+    requirement: |
+      Пользователь может поменять тему на светлую 
+    prerequisites: 
+      Запущено любое сражение в приложении
+      По умолчанию включена темная тема консоли
+    test-data: |
+       Light, Dark
+    steps:
+      - Нажать "Light"
+      - Нажать "Dark"
+    expected-result: |
+      Цвет консоли меняется на светлый и темный
+      
+  - summary: |
+      
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+  - summary: |
+      П
+    requirement: |
+      
+    prerequisites: 
+      
+    test-data: |
+       
+    steps:
+      - 
+    expected-result: |
+    
+    
+    
+    
+    
+        
