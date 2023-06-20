@@ -142,7 +142,7 @@
       Открывается страница с личной статистикой пользователя
       
   - summary: |
-      Проверка просмотра законченный игры в видеозаписи
+      Проверка просмотра законченной игры в видеозаписи
     requirement: |
       Пользователь может просмотреть процесс игры в записи
     prerequisites: 
@@ -188,7 +188,7 @@
       - Нажать "Completed games"
       - Нажать "show" в строке любой игры
     expected-result: |
-      Открывается страница игры другого пользователя с просмоотром видео
+      Открывается страница игры другого пользователя с просмотром видео
       
   - summary: |
       Проверка отправки сообщений в чат
@@ -258,7 +258,7 @@
     requirement: |
       Пользователь может поиграть с ботом 
     prerequisites: 
-      Открыт сайт https://codebattle.hexlet.io/users
+      Открыт сайт https://codebattle.hexlet.io
       Пользователь авторизован
     test-data: |
        Код = const _ = require("lodash");
@@ -274,7 +274,7 @@
       - Выбрать "rect_area"
       - Нажать "Create battle"
       - Ввести код в поле игры
-      - Нажать "Chek solution"
+      - Нажать "Check solution"
     expected-result: |
       Появилось информационная табличка, что пользователь выиграл
       
@@ -294,125 +294,133 @@
       Цвет консоли меняется на светлый и темный
       
   - summary: |
-      
+      Проверка открытия в разных браузерах 
     requirement: |
-      
+      Сайт должен быть совместим с последней версией браузера
     prerequisites: 
-      
+      Открыт сайт https://codebattle.hexlet.io/
+      Авторизация в Browser Stack выполнена
+      Выбрано окружение - Mac (OS Ventura)
     test-data: |
-       
+      Браузеры = Safari, Opera, Chrome, Yandex, Firefox, Edge, Internet Explorer
     steps:
-      - 
+      - Нажать на последнюю версию браузера 
+      - Ввести URL приложения
+      - Нажать "ENTER"
+      - Проскроллить страницу
+      - Нажать "Sign in"
+      - Нажать "Sign in with GitHub"
     expected-result: |
+      Сайт открывается корректно, наполнение страницы отображается корректно
+      
+  - summary: |
+      Проверка на наличие мобильной версии
+    requirement: |
+      Сайт должен иметь мобильную версию 
+    prerequisites: |
+      Открыт сайт https://codebattle.hexlet.io/ 
+      Открыт DevTools
+    test-data: |
+      Девайсы для проверки =  Iphone 12, Ipad Pro, Samsug Galaxy S9+
+    steps:
+      - Выбрать девайс
+      - Проскроллить страницу вниз
+      - Нажать "Create a game"
+      - Нажать "With a bot"
+      - Нажать "Create battle"
+    expected-result: |
+      На экран выводится корректно сверстанный сайт, функциональность основных кнопок работает
     
   - summary: |
-      П
+      Проверка создания турнира
     requirement: |
-      
+      Пользователь может создать турнир  
     prerequisites: 
-      
+      Открыт сайт https://codebattle.hexlet.io/ 
+      Пользователь авторизован 
     test-data: |
-       
+       тест
     steps:
-      - 
+      - Нажать на изображение "Учетная запись"
+      - Нажать "Tournaments"
+      - В поле "Starts at" ввести 20.06.2026
+      - Нажать "Сreate"
     expected-result: |
-    
+      Турнир успешно создан
+      
   - summary: |
-      П
+      Проверка чата в категории Tournament
     requirement: |
-      
+      Пользователь может писать сообшения в чате 
     prerequisites: 
-      
+      Пользователь авторизован
+      Создан любой турнир
     test-data: |
-       
+       Ключевое слово = 'Hello'
     steps:
-      - 
+      - Ввести ключевое слово в поле "Write your message"
+      - Нажать "Send"
     expected-result: |
-    
+      В чате появляется сообщение "Hello" от пользователя
+      
   - summary: |
-      П
+      Проверка функции бана в чате категории Турнир
     requirement: |
-      
+      Создатель турнира может забанить сообщения от пользователей  в чате
     prerequisites: 
-      
+      Пользователь авторизован
+      Создан любой турнир
     test-data: |
-       
+      Ключевое слово = 'Hello'
     steps:
-      - 
+      - Ввести ключевое слово в поле "Write your message"
+      - Нажать "Send"
+      - Нажать "Ban"
+      - Ввести ключевое слово в поле "Write your message"
+      - Нажать "Send"
     expected-result: |
-    
+      В чате не появляется новое сообщение
+      
   - summary: |
-      П
+      Проверка функции разбана в чате категории Турнир
     requirement: |
-      
+      Создатель турнира может разбанить сообщения от пользователей  в чате
     prerequisites: 
-      
+      Пользователь авторизован
+      Создан любой турнир
     test-data: |
-       
+      Ключевое слово = "Hello"
     steps:
-      - 
+      - Ввести ключевое слово в поле "Write your message"
+      - Нажать "Send"
+      - Нажать "Ban"
+      - Ввести ключевое слово в поле "Write your message"
+      - Нажать "Send"
+      - Нажать "Clean banned"
+      - Ввести ключевое слово в поле "Write your message"
+      - Нажать "Send"
     expected-result: |
-    
+      Cообщение появилось в чате
+      
   - summary: |
-      П
+      Проверка уникального названия таска
     requirement: |
-      
+      Пользователь может создать таск ТОЛЬКО с оригинальным названием
     prerequisites: 
-      
+      Открыт сайт https://codebattle.hexlet.io/tasks
+      Пользователь авторизован
+      В уже созданных тасках есть таск с названием "Bob"
     test-data: |
-       
+      Название = bob
     steps:
-      - 
+      - Ввести в поле "Name" название Bob
+      - Ввести в поле "Examples in markdown" значение "1"
+      - Ввести "1" в поле "Description en"
+      - Нажать "Save"
     expected-result: |
-    
-  - summary: |
-      П
-    requirement: |
+      Название таска не может совпадать с названием уже созданного таска
       
-    prerequisites: 
-      
-    test-data: |
-       
-    steps:
-      - 
-    expected-result: |
-    
-  - summary: |
-      П
-    requirement: |
-      
-    prerequisites: 
-      
-    test-data: |
-       
-    steps:
-      - 
-    expected-result: |
-    
-    
-  - summary: |
-      П
-    requirement: |
-      
-    prerequisites: 
-      
-    test-data: |
-       
-    steps:
-      - 
-    expected-result: |
-    
-  - summary: |
-      П
-    requirement: |
-      
-    prerequisites: 
-      
-    test-data: |
-       
-    steps:
-      - 
-    expected-result: |
+  
     
     
     
